@@ -64,3 +64,7 @@ function h = gplot3(A, xyz, varargin)
     end
     
 end
+
+%% Cited: Chris McComb (2019). gplot3: plotting simple graphs in 3d
+% (https://www.github.com/cmccomb/gplot3), 
+% GitHub. Retrieved December 6, 2019.

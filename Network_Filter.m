@@ -16,17 +16,19 @@ for i=1:n
             floor(abs(Coordinate(i,3)-Coordinate(j,3))/r);
     end    
 end
-%% ============= 3. Plot points =============
-subplot(2,2,1)
-plotVisualBasis(Coordinate, r);
 
+%% ============= 3. Plot points =============
+subplot(2,2,1);
+plotVisualBasis(Coordinate, r);
+title('(a)');
 %% ============= 4. Calculate social group adj =============
 adjA = isTargetNew(Distance,alpha);
 
 %% ============= 5. Plot Network A =============
-subplot(2,2,2)
+subplot(2,2,2);
 plotVisualBasis(Coordinate, r);
-gplot3(adjA, Coordinate);
+dgplot3(adjA, Coordinate);
+title('(b)');
 
 %% ============= 6. Calculate social degree of each node =============
 degrees = sum(adjA, 2);
@@ -36,17 +38,18 @@ friendHops = Distance.*adjA;
 adjB = isTargetNew(friendHops, beta);
 
 %% ============= 8. Plot Network B =============
-subplot(2,2,3)
+subplot(2,2,3);
 plotVisualBasis(Coordinate, r);
-gplot3(adjB, Coordinate);
+dgplot3(adjB, Coordinate);
+title('(c)');
 
 %% ============= 9. Filter 2nd  =============
 activeFreinds = friendHops.*adjB;
 adjC = isTargetNew(activeFreinds, gamma, -1, true, degrees);
 
 %% ============= 8. Plot Network C =============
-subplot(2,2,4)
+subplot(2,2,4);
 plotVisualBasis(Coordinate, r);
-gplot3(adjC, Coordinate);
-
+dgplot3(adjC, Coordinate);
+title('(d)');
 
