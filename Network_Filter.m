@@ -1,10 +1,11 @@
 %% ============= 1. Setup the parameters & Allocate memory =============
-n = 100;
-r=power((log2(n)/n), 1/3);
+global Coordinate r;
+n = 30;
+r = power((log2(n)/n), 1/3);
 q = int16(3);
 alpha = 1;
-beta = 0.7;
-gamma = 1;
+beta = 0.5;
+gamma = 2;
 Distance = zeros(n,n);
 Coordinate = unifrnd(0,1,n,3);
 
@@ -17,39 +18,19 @@ for i=1:n
     end    
 end
 
-%% ============= 3. Plot points =============
-subplot(2,2,1);
-plotVisualBasis(Coordinate, r);
-title('(a)');
-%% ============= 4. Calculate social group adj =============
+%% ============= 3. Calculate social group adj =============
 adjA = isTargetNew(Distance,alpha);
 
-%% ============= 5. Plot Network A =============
-subplot(2,2,2);
-plotVisualBasis(Coordinate, r);
-dgplot3(adjA, Coordinate);
-title('(b)');
-
-%% ============= 6. Calculate social degree of each node =============
+%% ============= 4. Calculate social degree of each node =============
 degrees = sum(adjA, 2);
 
-%% ============= 7. Filter 1st  =============
+%% ============= 5. Filter 1st  =============
 friendHops = Distance.*adjA;
 adjB = isTargetNew(friendHops, beta);
 
-%% ============= 8. Plot Network B =============
-subplot(2,2,3);
-plotVisualBasis(Coordinate, r);
-dgplot3(adjB, Coordinate);
-title('(c)');
-
-%% ============= 9. Filter 2nd  =============
+%% ============= 6. Filter 2nd  =============
 activeFreinds = friendHops.*adjB;
 adjC = isTargetNew(activeFreinds, gamma, -1, true, degrees);
 
-%% ============= 8. Plot Network C =============
-subplot(2,2,4);
-plotVisualBasis(Coordinate, r);
-dgplot3(adjC, Coordinate);
-title('(d)');
-
+%% ============= 7. Plot Network Evolution  =============
+Network_Evolution_Plot(adjA, adjB, adjC);
