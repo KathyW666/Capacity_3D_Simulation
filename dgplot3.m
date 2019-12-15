@@ -18,5 +18,5 @@ function h = dgplot3(A, xyz, varargin)
     
     % If only two arguments, then plot as is
     if nargin == 0 || nargin == 2
-        h = arrow3d(start,desti,10,'line',0.05,3);
+        h = arrow3d(start,desti,10,'line',0.1,3);
     end

@@ -1,5 +1,5 @@
-normal = 17;
-social = 50;
+normal = 60;
+social = 39;
 
 subplot(1,2,1);
 plotVisualBasis(Coordinate, r);
@@ -23,7 +23,7 @@ end
 % active nodes of friendGroup
 activeNodes = find(adjB(social,:));
 for i=1:length(activeNodes)
-    h3 = plot3(Coordinate(activeNodes(i),1),Coordinate(activeNodes(i),2),Coordinate(activeNodes(i),3),'bo','MarkerFaceColor','b','MarkerSize',8);
+    h3 = plot3(Coordinate(activeNodes(i),1),Coordinate(activeNodes(i),2),Coordinate(activeNodes(i),3),'bo','MarkerFaceColor','b','MarkerSize',4);
 end
 
 
@@ -34,6 +34,10 @@ hold on;
 plot3([Coordinate(social,1), Coordinate(destination,1)],...
     [Coordinate(social,2), Coordinate(destination,2)],...
     [Coordinate(social,3), Coordinate(destination,3)],'-','Color',[0.4660 0.6740 0.1880],'LineWidth',2);
+hold on;
+
+title('(a) 无标度节点连接关系');
+set(gca,'position',[0.1,0.2,0.35,0.7]);
 hold on;
 
 subplot(1,2,2);
@@ -56,7 +60,7 @@ end
 % active nodes of friendGroup
 activeNodes = find(adjB(normal,:));
 for i=1:length(activeNodes)
-    plot3(Coordinate(activeNodes(i),1),Coordinate(activeNodes(i),2),Coordinate(activeNodes(i),3),'bo','MarkerFaceColor','b','MarkerSize',8);
+    plot3(Coordinate(activeNodes(i),1),Coordinate(activeNodes(i),2),Coordinate(activeNodes(i),3),'bo','MarkerFaceColor','b','MarkerSize',4);
 end
 
 
@@ -69,11 +73,14 @@ plot3([Coordinate(normal,1), Coordinate(destination,1)],...
     [Coordinate(normal,3), Coordinate(destination,3)],'-','Color',[0.4660 0.6740 0.1880],'LineWidth',2);
 hold on;
 
+title('(b) 普通节点连接关系');
+set(gca,'position',[0.55,0.2,0.35,0.7]);
+hold on;
 
 lgd = legend([h h1 h2 h3 h4],'节点','源节点','源节点社交群组',...
     '群组内活跃节点','目的节点','Orientation','horizontal','Location','southoutside');
 
-
+lgd.Position = [0.5 0.1 0 0]; 
 
 
 
