@@ -19,7 +19,9 @@ plot3(X2,Y2,Z2,'o','MarkerSize',10,...
     'color',[48,128,20]/255, 'MarkerFaceColor',[48,128,20]/255);
 hold on;
 x=[X1,X2];y=[Y1,Y2];z=[Z1,Z2];
-h = plot3(x,y,z,'--','LineWidth',1.5);
+% mod = sqrt(((X2-X1)^2+(Y2-Y1)^2+(Z2-Z1)^2));
+h = quiver3(X1,Y1,Z1,(X2-X1),(Y2-Y1),(Z2-Z1),'k--','LineWidth',1.2);
+h.MaxHeadSize = 0.5; % size of arrow's head
 
 set(get(get(h,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');  
 leg = legend({'The source node      ','The destination node          '},'Fontsize',14,...

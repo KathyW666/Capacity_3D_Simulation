@@ -22,30 +22,32 @@ for i=1:r^3
     end
 end
 
-% [x,y,z]=radom_2dots(r);
-% num = routing(x,y,z,origin,r);
+[x,y,z]=radom_2dots(r);
+num = routing(x,y,z,origin,r);
 
 
 for i=1:6
     for j=1:r^3
-%         if ismember(j,num)
-%             h(j)=patch(Co_xyz{j,1}(:,i),Co_xyz{j,2}(:,i),Co_xyz{j,3}(:,i),'r');      
-%         else
-%             h(j)=patch(Co_xyz{j,1}(:,i),Co_xyz{j,2}(:,i),Co_xyz{j,3}(:,i),'b');            
-%         end
-        h(j)=patch(Co_xyz{j,1}(:,i),Co_xyz{j,2}(:,i),Co_xyz{j,3}(:,i),'b'); 
+%         h(j)=patch(Co_xyz{j,1}(:,i),Co_xyz{j,2}(:,i),Co_xyz{j,3}(:,i),'b');
+%         hybrid base fig: if use this, unable the is-else branch as below.
+        if ismember(j,num)
+            h(j)=patch(Co_xyz{j,1}(:,i),Co_xyz{j,2}(:,i),Co_xyz{j,3}(:,i),'r');      
+        else
+            h(j)=patch(Co_xyz{j,1}(:,i),Co_xyz{j,2}(:,i),Co_xyz{j,3}(:,i),'b');            
+        end
         set(get(get(h(j),'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
 
     end
 
 
     for j=1:r^3
-        set(h(j),'edgecolor','w','LineWidth',1,'facealpha',0.05);
-%         if ismember(j,num)
-%             set(h(j),'edgecolor','w','LineWidth',1,'facealpha',0.2);
-%         else
-%             set(h(j),'edgecolor','w','LineWidth',1,'facealpha',0.05);
-%         end
+%         set(h(j),'edgecolor','w','LineWidth',1,'facealpha',0.05);
+%         hybrid base fig: if use this, unable the is-else branch as below.
+        if ismember(j,num)
+            set(h(j),'edgecolor','w','LineWidth',1,'facealpha',0.2);
+        else
+            set(h(j),'edgecolor','w','LineWidth',1,'facealpha',0.05);
+        end
     end    
 end
 
