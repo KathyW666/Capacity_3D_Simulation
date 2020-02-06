@@ -2,7 +2,6 @@
 global Coordinate r;
 n = 30;
 r = power((log2(n)/n), 1/3);
-q = int16(3);
 alpha = 1;
 beta = 0.5;
 gamma = 2;
